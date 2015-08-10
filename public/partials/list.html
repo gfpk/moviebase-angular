@@ -1,0 +1,47 @@
+<div class="wrapper" id="main">
+<div id="list" >
+<p ng-show="genrefilter">filter: <span class='badge badge-important'>{{genrefilter}} <a href='/' ng-click="genrefilter=''"><i class='glyphicon glyphicon-remove-circle'></i></a></span></p>
+<p ></p>
+<section  ng-repeat="movie in filteredMovies = (movies | filter:{title:query} | filter:{genre:genrefilter}) " >
+	<article class="item panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"> <a href="#/movies/{{movie.id}}" item="{{movie.id}}">{{movie.title}}</a>
+				<a href="#/category/{{movie.genre}}" ng-click="$parent.genrefilter=movie.genre"><span class="badge badge-important pull-right">{{movie.genre}}</span></a></h3>
+		</div>
+		<div class="panel-body">
+			<img class ="pull-left" ng-src="assets/uploads/{{movie.title}}/thumb/thumb.jpg">
+			<p style="margin-left:165px ">{{movie.description | limitTo:100}}...</p>
+		</div>
+		<footer class="panel-footer">
+			<span class="label label-warning">
+
+				rating:	<span ng-repeat="i in range(movie.rating)"><i class='glyphicon glyphicon-star'></i></span><span ng-repeat="i in range(5-movie.rating)"><i class='glyphicon glyphicon-star-empty'></i></span>
+			</span>
+			&nbsp
+			<span class="label label-info">
+				budget: <i  class="glyphicon glyphicon-usd">{{movie.budget}}</i>
+			</span>
+			&nbsp
+			<span class="label label-info">
+				profits: <i  class="glyphicon glyphicon-usd">{{movie.profits}}</i>
+			</span>
+			&nbsp
+			<span class="label label-success">
+				views: <i  class="glyphicon glyphicon-user"> {{movie.audience}}</i>
+			</span>
+			
+		</footer>
+	</article>
+</section>
+
+<section class="item panel panel-warning" ng-show="!filteredMovies.length" >					
+	<div class="panel-heading">
+		<h3 class="panel-title">No resulsts</h3>
+	</div>
+	<div class="panel-body">					
+		please enter new search phrase
+	</div>				
+</section>				
+
+</div>
+</div>

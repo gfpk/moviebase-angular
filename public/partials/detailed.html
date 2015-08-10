@@ -1,0 +1,48 @@
+
+<div class="wrapper" id="main">
+	<div id="list" >		
+	<section>
+		<article class="item panel panel-default cf">
+			<div class="panel-heading">
+				<h3 class="panel-title"> <a href="#/movies/{{singleMovie.id}}">{{singleMovie.title}}</a><a href="#/category/{{singleMovie.genre}}" ng-click="$parent.genrefilter=movie.genre"><span class="badge badge-important pull-right">{{singleMovie.genre}}</span></a></h3>
+			</div>
+			<div class="panel-body">
+				<div id="gallery" class="cf">
+					<img class="galleryItem"src="assets/uploads/{{singleMovie.title}}/full/1.jpg" id="mainImage" ng-click="imageNo=1">
+					<img class="galleryItem"src="assets/uploads/{{singleMovie.title}}/full/2.jpg" ng-click="imageNo=2">
+					<img class="galleryItem"src="assets/uploads/{{singleMovie.title}}/full/3.jpg" ng-click="imageNo=3">
+					<img class="galleryItem"src="assets/uploads/{{singleMovie.title}}/full/4.jpg" ng-click="imageNo=4">
+				</div>
+				
+				{{singleMovie.description}}
+
+				<h5><u>Trivia</u></h5>
+				{{singleMovie.trivia}}
+			</div>
+		
+			<footer class="panel-footer">
+				<span class="label label-warning rating">
+					rating:	<span ng-repeat="i in range(singleMovie.rating)"><i class='glyphicon glyphicon-star'></i></span><span ng-repeat="i in range(5-singleMovie.rating)"><i class='glyphicon glyphicon-star-empty'></i></span>
+				</span>
+				&nbsp
+				<span class="label label-info">
+					<i  class="glyphicon glyphicon-usd">{{singleMovie.budget}}</i>
+				</span>
+				&nbsp
+				<span class="label label-success">
+					<i  class="glyphicon glyphicon-user">{{singleMovie.audience}}</i>
+				</span>
+				
+			</footer>
+		
+		</article>
+
+		<a href="/" class="btn btn-block btn-lg btn-primary" onclick="renderList()"><span class="glyphicon glyphicon-arrow-left"></span> back</a>
+		
+	</section>
+	</div>
+</div>
+<div id="canvas" ng-class="{active: imageNo}" ng-show="imageNo">
+	<a id="close" href="javascript:;" ng-click="imageNo=''"><i class="glyphicon glyphicon-remove"></i></a>
+	<div id="canvasinner"><img ng-src="assets/uploads/{{singleMovie.title}}/full/{{imageNo}}.jpg"></div>
+</div>
